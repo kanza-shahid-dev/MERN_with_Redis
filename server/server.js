@@ -19,6 +19,14 @@ app.use(
 );
 app.use(express.json());
 
+app.listen(PORT, () => {
+  console.log("listening", PORT);
+  mongoose
+    .connect(process.env.MONGODB_URL)
+    .then(() => console.log("db connected"))
+    .catch((error) => console.log("DB error", error));
+});
+
 //routes
 app.use("/api/user", userRoutes);
 
@@ -31,12 +39,5 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/dist/index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log("listening", PORT);
-  mongoose
-    .connect(process.env.MONGODB_URL)
-    .then(() => console.log("db connected"))
-    .catch((error) => console.log("DB error", error));
-});
 
 
