@@ -19,8 +19,8 @@ function App() {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const baseURL = getBaseURL();
         console.log('Fetching from:', `${baseURL}/api/user/list`);
+        const response = await axios.get(`${baseURL}/api/user/list`);
         console.log("user", response.data.users);
         setUsers(response.data.users);
         setLoading(false);
