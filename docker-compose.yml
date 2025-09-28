@@ -1,0 +1,38 @@
+
+services:
+  redis:
+    image: redis
+    ports:
+      - "11543:11543"
+    volumes:
+      - ./data:/data
+    command: redis-server --appendonly yes
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+
+  backend:
+    build: 
+     context: ./server
+     dockerfile: Dockerfile.server
+    ports:
+      - "5001:5001"
+    depends_on:
+      - redis
+      - db
+    env_file:
+      - ./server/.env
+    
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.client
+    ports:
+      - "3000:3000"
+
+      
