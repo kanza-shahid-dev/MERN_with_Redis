@@ -19,15 +19,11 @@ app.use(
 );
 app.use(express.json());
 
+//routes
+app.use("/api/user", userRoutes);
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-
-// when running locally
-// app.use(express.static(path.join(__dirname, "../client/dist")));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-// });
 
 
 app.use(express.static(path.join(__dirname, "client/dist")));
@@ -43,5 +39,4 @@ app.listen(PORT, () => {
     .catch((error) => console.log("DB error", error));
 });
 
-//routes
-app.use("/api/user", userRoutes);
+

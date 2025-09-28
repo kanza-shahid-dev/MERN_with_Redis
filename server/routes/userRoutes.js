@@ -25,6 +25,7 @@ router.post("/create", async (req, res) => {
 });
 
 router.get("/list", async (req, res) => {
+  console.log("list");
   try {
     //check cache
     const cachedUsers = await redisClient.get(cacheKey);

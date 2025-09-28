@@ -11,6 +11,7 @@ function App() {
       try {
         const baseURL = import.meta.env.VITE_API_BASE_URL;
         const response = await axios.get(`${baseURL}/api/user/list`);
+        console.log(response.data.users);
         setUsers(response.data.users);
         setLoading(false);
       } catch (error) {
