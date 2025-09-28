@@ -5,13 +5,23 @@ function App() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const getBaseURL = () => {
+    const envURL = import.meta.env.VITE_API_BASE_URL;
+    console.log('Environment URL:', envURL); // Debug log
+
+    // Fallback for development
+    return envURL || 'http://localhost:5001';
+  };
+
+
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const baseURL = import.meta.env.VITE_API_BASE_URL;
-        const response = await axios.get(`${baseURL}/api/user/list`);
-        console.log(response.data.users);
+        const baseURL = getBaseURL();
+        console.log('Fetching from:', `${baseURL}/api/user/list`);
+        console.log("user", response.data.users);
         setUsers(response.data.users);
         setLoading(false);
       } catch (error) {
