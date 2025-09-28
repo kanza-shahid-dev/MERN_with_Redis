@@ -36,5 +36,5 @@ dist-ssr
 
 # or just ignore server/.env
 /server/.env
-
+data/
 .data
