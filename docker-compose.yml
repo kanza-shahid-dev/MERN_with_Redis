@@ -17,8 +17,8 @@ services:
 
   backend:
     build: 
-     context: ./server
-     dockerfile: Dockerfile.server
+     context: .
+     dockerfile: server/Dockerfile.server
     ports:
       - "5001:5001"
     depends_on:
@@ -28,13 +28,13 @@ services:
       - ./server/.env
     
 
-  frontend:
-    build:
-      context: ./client
-      dockerfile: Dockerfile.client
-    env_file:
-      - ./client/.env
-    ports:
-      - "5173:5173"
+  # frontend:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile.client
+  #   env_file:
+  #     - ./client/.env
+  #   ports:
+  #     - "5173:5173"
 
       
